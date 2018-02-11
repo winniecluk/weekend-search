@@ -1,8 +1,54 @@
-html
+doctype html
+html(lang="en")
   head
     title= title
+    style
+      include ../public/stylesheets/style.css
+    script.
+      function decode(str) {
+        return str.replace(/&(\w+);/g, '"');
+      };
+      var countries = JSON.parse(decode('#{countries}'));
+    script
+      include ../public/scripts/main.js
   body
-    h1= message
+    h2= message
+
+    mixin selector(elementId, arr, iType, varName)
+      .container-column(id=elementId)
+        each el in arr
+          input(
+            type=iType
+            value=el
+            class=elementId
+          )
+          span(class=iType)= el
+          br
+        button(
+          class=iType
+          onclick='checkAll(this)'
+          data-state='unchecked'
+        ) Check All
+        button(
+          data-name=varName
+          onclick='selectChoice(this)'
+        ) Select
+        span(class=elementId)
+
+    .container
+      +selector('test', languages, 'checkbox', 'languages')
+      +selector('test1', categories, 'checkbox', 'categories')
+
+
+
+    // countries
+
+
+    // APIs
+
+    // categories
+    select
+      option(value=hello)
     - for (var i = 0; i < events.length; i++){
     li= events[i]['name']
     - }

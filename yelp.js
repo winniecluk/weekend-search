@@ -29,10 +29,31 @@ var eventSearch = function(countryCode, configObj){
       total\
       events {\
         name\
-        time_start\
-        description\
+        id\
+        category\
         cost\
         cost_max\
+        description\
+        event_site_url\
+        image_url\
+        is_canceled\
+        is_free\
+        is_official\
+        latitude\
+        longitude\
+        location {\
+          address1\
+          address2\
+          address3\
+          city\
+          state\
+          zip_code\
+          country\
+        }\
+        tickets_url\
+        time_start\
+        time_end\
+        zip_code\
       }\
     }\
   }`;
