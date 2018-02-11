@@ -82,15 +82,11 @@ const countries = {
   }
 }
 
-function getCountries(language){
+function getCountries(language = 'English', country){
+  if (country) return countries[language][country];
   return countries[language];
 }
 
-function getCountryCode(language, country){
-  return countries[language][country];
-}
-
 module.exports = {
-  getCountries,
-  getCountryCode
+  getCountries
 };

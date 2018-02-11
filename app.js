@@ -12,8 +12,7 @@ var date = Date.now() / 1000;
 var yelpQuery = require('./yelp');
 var yelpCountries = require('./yelp-countries');
 
-const localeCode = yelpCountries.getCountryCode('English', 'United States');
-
+const localeCode = yelpCountries.getCountries('English', 'United States');
 
 app.set('views', './views');
 app.set('view engine', 'pug');
