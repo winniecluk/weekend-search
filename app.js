@@ -1,40 +1,49 @@
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
+const YELP_KEY = process.env.YELP_KEY;
 
 const path = require('path');
 const express = require('express');
 const app = express();
-
 const request = require('request-promise');
-const YELP_KEY = process.env.YELP_KEY;
-var date = Date.now() / 1000;
 
+const util = require('./util');
 var yelpQuery = require('./yelp');
 var yelpCountries = require('./yelp-countries');
+var categoryIndex = require('./yelp-categories');
 
 const localeCode = yelpCountries.getCountries('English', 'United States');
 
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(express.static( path.join(__dirname, 'public') ) );
+  console.log();
+
+app.get('/')
 
 app.get('/', (req, res) => {
-  var endDate = new Date();
-  endDate.setDate(endDate.getDate() + 1);
-  endDate = (Math.floor (endDate.getTime() / 1000) ).toString();
+    // console.log(yelpCountries.countries)
+    res.render('index', {
+      title: 'Weekend-Search'
+      , message: 'search'
+      , languages: Object.keys(yelpCountries.countries)
+      , countries: JSON.stringify(yelpCountries.countries)
+      , categories: categoryIndex['yelp']
+      , events: []
+    });
 
-  yelpQuery.eventSearch(localeCode, {
-    limit: 20
-    , location: '"Los Angeles"'
-    , categories: JSON.stringify(['music'])
-    , start_date: (Math.floor(Date.now() / 1000)).toString()
-    , end_date: endDate
-    , sort_on: '"time_start"'
-  }).then(function(r){
-    console.log(r);
-    var d = JSON.parse(r);
-    res.render('index', { title: 'Hey', message: 'Hello there!', events: d.data.event_search.events});
-  });
+  // yelpQuery.eventSearch(localeCode, {
+  //   limit: 20
+  //   , location: '"Los Angeles"'
+  //   , categories: JSON.stringify(['music'])
+  //   , start_date: util.dateParser('2018-02-10')
+  //   , end_date: util.dateParser('2018-02-11')
+  //   , sort_on: '"time_start"'
+  // }).then(function(r){
+  //   console.log(r);
+  //   var d = JSON.parse(r);
+  //   res.render('index', { title: 'Hey', message: 'Hello there!', events: d.data.event_search.events});
+  // });
 });
 
 app.listen(PORT, onListening);

@@ -1,0 +1,21 @@
+body {
+  box-sizing: border-box;
+/*  background-color: red;
+*/}
+
+.container {
+  border: 1px solid blue;
+  height: 365px;
+}
+.container-column {
+  width: 25vw;
+  border: 1px solid red;
+  margin: 0 8px;
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+}
+
+span.checkbox {
+  margin-left: 4px;
+}

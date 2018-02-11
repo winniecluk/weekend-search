@@ -88,5 +88,6 @@ function getCountries(language = 'English', country){
 }
 
 module.exports = {
-  getCountries
+  getCountries,
+  countries
 };
