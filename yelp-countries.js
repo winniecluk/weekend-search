@@ -1,89 +1,224 @@
 const countries = {
   "Czech": {
-    "Czech Republic": "cs_CZ"
+    "Czech Republic": {
+      "languageCode": "cs_CZ"
+      , "apis": ["yelp"]
+    }
   }
   , "Danish": {
-    "Denmark": "da_DK"
+    "Denmark": {
+      "languageCode": "da_DK"
+      , "apis": ["yelp"]
+    }
   }
   , "German": {
-    "Austria": "de_AT"
-    , "Switzerland": "de_CH"
-    , "Germany": "de_DE"
+    "Austria":{
+      "languageCode": "de_AT"
+      , "apis": ["yelp"]
+    }
+    , "Switzerland":{
+      "languageCode": "de_CH"
+      , "apis": ["yelp"]
+    }
+    , "Germany":{
+      "languageCode": "de_DE"
+      , "apis": ["yelp"]
+    }
   }
   , "English": {
-    "Australia": "en_AU"
-    , "Belgium": "en_BE"
-    , "Canada": "en_CA"
-    , "Switzerland": "en_CH"
-    , "United Kingdom": "en_GB"
-    , "Hong Kong": "en_HK"
-    , "Republic of Ireland": "en_IE"
-    , "Ireland": "en_IE"
-    , "Malaysia": "en_MY"
-    , "New Zealand": "en_NZ"
-    , "Philippines": "en_PH"
-    , "Singapore": "en_SG"
-    , "United States": "en_US"
-    , "US": "en_US"
-    , "America": "en_US"
+      "Australia":{
+        "languageCode": "en_AU"
+        , "apis": ["yelp"]
+      }
+      , "Belgium":{
+        "languageCode": "en_BE"
+        , "apis": ["yelp"]
+      }
+      , "Canada":{
+        "languageCode": "en_CA"
+        , "apis": ["yelp"]
+      }
+      , "Switzerland":{
+        "languageCode": "en_CH"
+        , "apis": ["yelp"]
+      }
+      , "United Kingdom":{
+        "languageCode": "en_GB"
+        , "apis": ["yelp"]
+      }
+      , "Hong Kong":{
+        "languageCode": "en_HK"
+        , "apis": ["yelp"]
+      }
+      , "Republic of Ireland":{
+        "languageCode": "en_IE"
+        , "apis": ["yelp"]
+      }
+      , "Ireland":{
+        "languageCode": "en_IE"
+        , "apis": ["yelp"]
+      }
+      , "Malaysia":{
+        "languageCode": "en_MY"
+        , "apis": ["yelp"]
+      }
+      , "New Zealand":{
+        "languageCode": "en_NZ"
+        , "apis": ["yelp"]
+      }
+      , "Philippines":{
+        "languageCode": "en_PH"
+        , "apis": ["yelp"]
+      }
+      , "Singapore":{
+        "languageCode": "en_SG"
+        , "apis": ["yelp"]
+      }
+      , "United States":{
+        "languageCode": "en_US"
+        , "apis": ["yelp"]
+      }
+      , "US":{
+        "languageCode": "en_US"
+        , "apis": ["yelp"]
+      }
+      , "America":{
+        "languageCode": "en_US"
+        , "apis": ["yelp"]
+      }
   }
   , "Spanish": {
-    "Argentina": "es_AR"
-    , "Chile": "es_CL"
-    , "Spain": "es_ES"
-    , "Mexico": "es_MX"
+    "Argentina":{
+      "languageCode": "es_AR"
+      , "apis": ["yelp"]
+    }
+    , "Chile":{
+      "languageCode": "es_CL"
+      , "apis": ["yelp"]
+    }
+    , "Spain":{
+      "languageCode": "es_ES"
+      , "apis": ["yelp"]
+    }
+    , "Mexico":{
+      "languageCode": "es_MX"
+      , "apis": ["yelp"]
+    }
   }
   , "Finnish": {
-    "Finland": "fi_FI"
+    "Finland":{
+      "languageCode": "fi_FI"
+      , "apis": ["yelp"]
+    }
   }
   , "Filipino": {
-    "Philippines": "fil_PH"
+    "Philippines":{
+      "languageCode": "fil_PH"
+      , "apis": ["yelp"]
+    }
   }
   , "French": {
-    "Belgium": "fr_BE"
-    , "Canada": "fr_CA"
-    , "Switzerland": "fr_CH"
-    , "France": "fr_FR"
+    "Belgium":{
+      "languageCode": "fr_BE"
+      , "apis": ["yelp"]
+    }
+    , "Canada":{
+      "languageCode": "fr_CA"
+      , "apis": ["yelp"]
+    }
+    , "Switzerland":{
+      "languageCode": "fr_CH"
+      , "apis": ["yelp"]
+    }
+    , "France":{
+      "languageCode": "fr_FR"
+      , "apis": ["yelp"]
+    }
   }
   , "Italian": {
-    "Switzerland": "it_CH"
-    , "Italy": "it_IT"
+    "Switzerland":{
+      "languageCode": "it_CH"
+      , "apis": ["yelp"]
+    }
+    , "Italy":{
+      "languageCode": "it_IT"
+      , "apis": ["yelp"]
+    }
   }
   , "Japanese": {
-    "Japan": "ja_JP"
+    "Japan":{
+      "languageCode": "ja_JP"
+      , "apis": ["yelp"]
+    }
   }
   , "Malay": {
-    "Malaysia": "ms_MY"
+    "Malaysia":{
+      "languageCode": "ms_MY"
+      , "apis": ["yelp"]
+    }
   }
   , "Norwegian": {
-    "Norway": "nb_NO"
+    "Norway":{
+      "languageCode": "nb_NO"
+      , "apis": ["yelp"]
+    }
   }
   , "Dutch": {
-    "Belgium": "nl_BE"
-    , "The Netherlands": "nl_NL"
+    "Belgium":{
+      "languageCode": "nl_BE"
+      , "apis": ["yelp"]
+    }
+    , "The Netherlands":{
+      "languageCode": "nl_NL"
+      , "apis": ["yelp"]
+    }
   }
   , "Polish": {
-    "Poland": "pl_PL"
+    "Poland":{
+      "languageCode": "pl_PL"
+      , "apis": ["yelp"]
+    }
   }
   , "Portuguese": {
-    "Brazil": "pt_BR"
-    , "Portugal": "pt_PT"
+    "Brazil":{
+      "languageCode": "pt_BR"
+      , "apis": ["yelp"]
+    }
+    , "Portugal":{
+      "languageCode": "pt_PT"
+      , "apis": ["yelp"]
+    }
   }
   , "Swedish": {
-    "Finland": "sv_FI"
-    , "Sweden": "sv_SE"
+    "Finland":{
+      "languageCode": "sv_FI"
+      , "apis": ["yelp"]
+    }
+    , "Sweden":{
+      "languageCode": "sv_SE"
+      , "apis": ["yelp"]
+    }
   }
   , "Turkish": {
-    "Turkey": "tr_TR"
+    "Turkey":{
+      "languageCode": "tr_TR"
+      , "apis": ["yelp"]
+    }
   }
   , "Chinese": {
-    "Hong Kong": "zh_HK"
-    , "Taiwan": "zh_TW"
+    "Hong Kong":{
+      "languageCode": "zh_HK"
+      , "apis": ["yelp"]
+    }
+    , "Taiwan":{
+      "languageCode": "zh_TW"
+      , "apis": ["yelp"]
+    }
   }
 }
 
 function getCountries(language = 'English', country){
-  if (country) return countries[language][country];
+  if (country) return countries[language][country]["languageCode"];
   return countries[language];
 }
 

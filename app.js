@@ -19,8 +19,6 @@ app.set('view engine', 'pug');
 app.use(express.static( path.join(__dirname, 'public') ) );
   console.log();
 
-app.get('/')
-
 app.get('/', (req, res) => {
     // console.log(yelpCountries.countries)
     res.render('index', {
