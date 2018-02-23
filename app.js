@@ -26,10 +26,11 @@ app.get('/', (req, res) => {
       , message: 'search'
       , countryData: JSON.stringify(countryIndex)
       , languageData: JSON.stringify(languageIndex)
+      , categoryData: JSON.stringify(categoryIndex)
       , languages: Object.keys(languageIndex)
       , countries: Object.keys(languageIndex.English)
       , apis: countryIndex['United States']
-      , categories: categoryIndex['yelp']
+      , categories: Object.keys(categoryIndex['yelp'])
       , events: []
     });
 

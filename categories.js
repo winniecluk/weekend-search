@@ -15,7 +15,7 @@ const yelpCategories = {
 };
 
 const categoryIndex = {
-  "yelp": Object.keys(yelpCategories)
+  "yelp": yelpCategories
 }
 
 module.exports = categoryIndex;

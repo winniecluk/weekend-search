@@ -1,6 +1,7 @@
 console.log('okay!');
 console.log(countryData);
 console.log(languageData);
+console.log(categoryData);
 var languages = [];
 var countries = [];
 var categories = [];
@@ -18,7 +19,7 @@ var dependentSelectMap = {
   }
   , apis: {
     dependency: 'categories'
-    , dataset: null
+    , dataset: categoryData
   }
 };
 
@@ -46,31 +47,45 @@ function checkAll(t){
 }
 
 function selectChoice(t){
-  var label = t.getAttribute('data-name');
-  var checkboxId = t.parentElement.id;
+  var currentCategory = t.getAttribute('data-name');
   var arr = [];
-  document.querySelectorAll('input[type=checkbox].' + checkboxId).forEach(el => {
+
+  console.log('THIS IS THE CURRENT CATEGORY: ');
+  console.log(currentCategory);
+
+  document.querySelectorAll('input[type=checkbox].' + currentCategory).forEach(el => {
     if (el.checked) arr.push(el.value);
   });
-  eval(label + '= arr');
+  eval(currentCategory + '= arr');
+  console.log(arr);
   // evaluate selection
 
   var selectedArr = new Set([]);
-  var dependentField = dependentSelectMap[label]['dependency'];
-  document.querySelector('.container-finite' + '.' + dependentField).innerHTML = '';
+  var dependentCategory = dependentSelectMap[currentCategory]['dependency'];
+
+  console.log('THIS IS THE DEPENDENT CATEGORY');
+  console.log(dependentCategory);
+  document.querySelector('.container-finite' + '.' + dependentCategory).innerHTML = '';
     arr.forEach(function(el, idx){
 
-      if (label == 'countries'){
-        var dataArr = dependentSelectMap[label]['dataset'][el];
+      console.log('these are the resulting choices');
+      if (currentCategory == 'countries'){
+        var dataArr = dependentSelectMap[currentCategory]['dataset'][el];
+        console.log(dataArr);
       } else {
-        var dataArr = Object.keys(dependentSelectMap[label]['dataset'][el]);
+        var dataArr = Object.keys(dependentSelectMap[currentCategory]['dataset'][el]);
+        console.log(dataArr);
       }
       // selectedArr = selectedArr.concat(dataArr);
       selectedArr = Array.from( new Set([...selectedArr, ...dataArr]) );
+      console.log('what is selectedArr: ');
+      console.log(selectedArr);
       if (idx == arr.length - 1){
-        eval(label + '= selectedArr');
-        let d = makeSection(selectedArr, label, 'checkbox', label);
-        document.querySelector('.container-finite.' + dependentField).appendChild(d);
+        // eval(currentCategory + '= selectedArr');
+        let d = makeSection(selectedArr, dependentCategory, 'checkbox', dependentCategory);
+        console.log(d);
+        console.log('document.querySelector(\'.container-column#\' + dependentCategory).innerHTML = d');
+        document.querySelector('.container-finite.' + dependentCategory).appendChild(d);
         // document.querySelector('div#countries').appendChild(d);
       }
     });
@@ -86,8 +101,8 @@ var sectionArr = [
 ];
 function makeSection(arr, elId, iType, varName){
   var columnDiv = document.createElement('div');
-  columnDiv.setAttribute('id', elId);
-  // columnDiv.classList.add('container-column');
+  columnDiv.className = 'container-finite ' + elId;
+  // columnDiv.setAttribute('id', elId);
   for (let i = 0; i < arr.length; i++){
     var input = sectionArr.join('').replace('#REPLACETYPE', iType).replace(/#REPLACEVALUE/g, arr[i]).replace('#REPLACEID', elId);
     columnDiv.innerHTML += input;

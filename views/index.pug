@@ -6,10 +6,11 @@ html(lang="en")
       include ../public/stylesheets/style.css
     script.
       function decode(str) {
-        return str.replace(/&(\w+);/g, '"');
+        return str.replace(/&amp;/g, '&').replace(/&(\w+);/g, '"');
       };
       var countryData = JSON.parse(decode('#{countryData}'));
       var languageData = JSON.parse(decode('#{languageData}'));
+      var categoryData = JSON.parse(decode('#{categoryData}'));
     script
       include ../public/scripts/main.js
   body
@@ -18,22 +19,23 @@ html(lang="en")
     mixin selector(elementId, arr, iType, varName, arrValues)
       .container-column(id=elementId)
         .container-finite(class=elementId)
-          each el in arr
-            if arrValues.includes(el)
-              input(
-                type=iType
-                value=el
-                class=elementId
-                checked=true
-              )
-            else
-              input(
-                type=iType
-                value=el
-                class=elementId
-              )
-            span(class=iType)= el
-            br
+          div
+            each el in arr
+              if arrValues.includes(el)
+                input(
+                  type=iType
+                  value=el
+                  class=elementId
+                  checked=true
+                )
+              else
+                input(
+                  type=iType
+                  value=el
+                  class=elementId
+                )
+              span(class=iType)= el
+              br
         button(
           class=iType
           onclick='checkAll(this)'
