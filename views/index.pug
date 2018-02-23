@@ -8,7 +8,8 @@ html(lang="en")
       function decode(str) {
         return str.replace(/&(\w+);/g, '"');
       };
-      var countryData = JSON.parse(decode('#{countries}'));
+      var countryData = JSON.parse(decode('#{countryData}'));
+      var languageData = JSON.parse(decode('#{languageData}'));
     script
       include ../public/scripts/main.js
   body
@@ -16,22 +17,23 @@ html(lang="en")
 
     mixin selector(elementId, arr, iType, varName, arrValues)
       .container-column(id=elementId)
-        each el in arr
-          if arrValues.includes(el)
-            input(
-              type=iType
-              value=el
-              class=elementId
-              checked=true
-            )
-          else
-            input(
-              type=iType
-              value=el
-              class=elementId
-            )
-          span(class=iType)= el
-          br
+        .container-finite(class=elementId)
+          each el in arr
+            if arrValues.includes(el)
+              input(
+                type=iType
+                value=el
+                class=elementId
+                checked=true
+              )
+            else
+              input(
+                type=iType
+                value=el
+                class=elementId
+              )
+            span(class=iType)= el
+            br
         button(
           class=iType
           onclick='checkAll(this)'
@@ -40,15 +42,16 @@ html(lang="en")
         button(
           data-name=varName
           onclick='selectChoice(this)'
-        ) Select
-        span(class=elementId)
+        ) Filter
 
     .container
       +selector('languages', languages, 'checkbox', 'languages', ['English'])
+      +selector('countries', countries, 'checkbox', 'countries', ['United States'])
+      +selector('apis', apis, 'checkbox', 'apis', [])
       +selector('categories', categories, 'checkbox', 'categories', [])
 
-
-
+    .container
+      button(id='search-button')= 'Search'
     // countries
 
 

@@ -8,7 +8,7 @@ body {
   height: 365px;
 }
 .container-column {
-  width: 25vw;
+  width: 21vw;
   border: 1px solid red;
   margin: 0 8px;
   display: inline-block;

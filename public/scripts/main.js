@@ -1,10 +1,26 @@
 console.log('okay!');
 console.log(countryData);
+console.log(languageData);
 var languages = [];
 var countries = [];
 var categories = [];
 var apis = [];
 var container = document.querySelector('div.container');
+
+var dependentSelectMap = {
+  languages: {
+    dependency: 'countries'
+    , dataset: languageData
+  }
+  , countries: {
+    dependency: 'apis'
+    , dataset: countryData
+  }
+  , apis: {
+    dependency: 'categories'
+    , dataset: null
+  }
+};
 
 var states = {
   checked: {
@@ -30,7 +46,6 @@ function checkAll(t){
 }
 
 function selectChoice(t){
-  console.log('clicky');
   var label = t.getAttribute('data-name');
   var checkboxId = t.parentElement.id;
   var arr = [];
@@ -38,38 +53,50 @@ function selectChoice(t){
     if (el.checked) arr.push(el.value);
   });
   eval(label + '= arr');
-
   // evaluate selection
 
-  if (label == 'languages'){
-    let selectedCountries = [];
+  var selectedArr = new Set([]);
+  var dependentField = dependentSelectMap[label]['dependency'];
+  document.querySelector('.container-finite' + '.' + dependentField).innerHTML = '';
     arr.forEach(function(el, idx){
-      var countriesArr = Object.keys(countryData[el]);
-      selectedCountries = selectedCountries.concat(countriesArr);
-      if (idx == arr.length - 1){
-        countries = selectedCountries;
-        let d = makeSection(countries, 'countries', 'checkbox', 'countries');
-        document.querySelector('div.container').appendChild(d);
-      }
-    })
 
-  }
+      if (label == 'countries'){
+        var dataArr = dependentSelectMap[label]['dataset'][el];
+      } else {
+        var dataArr = Object.keys(dependentSelectMap[label]['dataset'][el]);
+      }
+      // selectedArr = selectedArr.concat(dataArr);
+      selectedArr = Array.from( new Set([...selectedArr, ...dataArr]) );
+      if (idx == arr.length - 1){
+        eval(label + '= selectedArr');
+        let d = makeSection(selectedArr, label, 'checkbox', label);
+        document.querySelector('.container-finite.' + dependentField).appendChild(d);
+        // document.querySelector('div#countries').appendChild(d);
+      }
+    });
 }
 
 
 var sectionArr = [
   '<input type="#REPLACETYPE" value="#REPLACEVALUE" class="#REPLACEID" />'
-  , '<span>'
+  , '<span class="checkbox">'
   , '#REPLACEVALUE'
   , '</span>'
+  , '<br />'
 ];
 function makeSection(arr, elId, iType, varName){
   var columnDiv = document.createElement('div');
   columnDiv.setAttribute('id', elId);
+  // columnDiv.classList.add('container-column');
   for (let i = 0; i < arr.length; i++){
     var input = sectionArr.join('').replace('#REPLACETYPE', iType).replace(/#REPLACEVALUE/g, arr[i]).replace('#REPLACEID', elId);
-    console.log(input);
     columnDiv.innerHTML += input;
   }
   return columnDiv;
+}
+
+window.onload = function(){
+  document.querySelector('#search-button').addEventListener('click', e => {
+    console.log('clicked');
+  });
 }

@@ -9,23 +9,26 @@ const request = require('request-promise');
 
 const util = require('./util');
 var yelpQuery = require('./yelp');
-var yelpCountries = require('./yelp-countries');
-var categoryIndex = require('./yelp-categories');
+var countryIndex = require('./countries').byCountries;
+var languageIndex = require('./countries').byLanguages;
+var categoryIndex = require('./categories');
 
-const localeCode = yelpCountries.getCountries('English', 'United States');
+const localeCode = languageIndex['English']['United States'];
 
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(express.static( path.join(__dirname, 'public') ) );
-  console.log();
 
 app.get('/', (req, res) => {
     // console.log(yelpCountries.countries)
     res.render('index', {
       title: 'Weekend-Search'
       , message: 'search'
-      , languages: Object.keys(yelpCountries.countries)
-      , countries: JSON.stringify(yelpCountries.countries)
+      , countryData: JSON.stringify(countryIndex)
+      , languageData: JSON.stringify(languageIndex)
+      , languages: Object.keys(languageIndex)
+      , countries: Object.keys(languageIndex.English)
+      , apis: countryIndex['United States']
       , categories: categoryIndex['yelp']
       , events: []
     });
@@ -42,6 +45,10 @@ app.get('/', (req, res) => {
   //   var d = JSON.parse(r);
   //   res.render('index', { title: 'Hey', message: 'Hello there!', events: d.data.event_search.events});
   // });
+});
+
+app.post('/search', (req, res) => {
+
 });
 
 app.listen(PORT, onListening);
