@@ -1,9 +1,13 @@
+// should have html string instead of doc element
+// should just have it on button instead of parent
+// sense language
+
 console.log('okay!');
 console.log(countryData);
 console.log(languageData);
 console.log(categoryData);
-var languages = [];
-var countries = [];
+var languages = ['English'];
+var countries = ['United States'];
 var categories = [];
 var apis = [];
 var container = document.querySelector('div.container');
@@ -109,6 +113,8 @@ function makeSection(arr, elId, iType, varName){
   }
   return columnDiv;
 }
+
+// ajax call to get yelp data
 
 window.onload = function(){
   document.querySelector('#search-button').addEventListener('click', e => {

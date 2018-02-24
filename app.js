@@ -14,6 +14,16 @@ var languageIndex = require('./countries').byLanguages;
 var categoryIndex = require('./categories');
 
 const localeCode = languageIndex['English']['United States'];
+var todayDate = new Date();
+var tomorrowDate = new Date(new Date().setDate(todayDate.getDate() + 1));
+function replacer (match, p1, p2, p3, offset, string){
+  var z1 = p1.length == 1 ? '0' + p1 : p1;
+  var z2 = p2.length == 1 ? '0' + p2 : p2;
+  return `${p3}-${z1}-${z2}`
+}
+
+const todayDateStr = todayDate.toLocaleDateString('en-US').replace(/^(\d+)\/(\d+)\/(\d+)$/, replacer);
+const tomorrowDateStr = tomorrowDate.toLocaleDateString('en-US').replace(/^(\d+)\/(\d+)\/(\d+)$/, replacer);
 
 app.set('views', './views');
 app.set('view engine', 'pug');
@@ -32,6 +42,8 @@ app.get('/', (req, res) => {
       , apis: countryIndex['United States']
       , categories: Object.keys(categoryIndex['yelp'])
       , events: []
+      , todayDateStr: todayDateStr
+      , tomorrowDateStr: tomorrowDateStr
     });
 
   // yelpQuery.eventSearch(localeCode, {

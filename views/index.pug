@@ -11,6 +11,9 @@ html(lang="en")
       var countryData = JSON.parse(decode('#{countryData}'));
       var languageData = JSON.parse(decode('#{languageData}'));
       var categoryData = JSON.parse(decode('#{categoryData}'));
+      var todayDateStr = '#{todayDateStr}';
+      var tomorrowDateStr = '#{tomorrowDateStr}';
+      console.log(tomorrowDateStr);
     script
       include ../public/scripts/main.js
   body
@@ -53,6 +56,9 @@ html(lang="en")
       +selector('categories', categories, 'checkbox', 'categories', [])
 
     .container
+      input(name='location' type='text' value='Los Angeles')
+      input(type='date' name='todayDateStr' value=todayDateStr)
+      input(type='date' name='end-date' value=tomorrowDateStr)
       button(id='search-button')= 'Search'
     // countries
 
